@@ -1,8 +1,20 @@
+using Serilog;
+using Serilog.Events;
 using TileProxyServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
+using var logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
+    .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {ClientIp}] {Message:lj}{NewLine}{Exception}")
+    .Enrich.WithClientIp()
+    .CreateLogger();
+
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSerilog(logger);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

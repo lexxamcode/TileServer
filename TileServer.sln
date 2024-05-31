@@ -9,11 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TileProxyServer", "TileProx
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Model\Domain.csproj", "{255FD6E7-0235-41FD-8AA6-8CB8473D9A46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{A03C0516-A9D7-4A80-BFC0-56F24D5E6F9F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Contracts", "Application.Contracts\Application.Contracts.csproj", "{429775E8-2CE3-464D-BD68-EDF8257746CE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{3F379571-A64D-49AC-9C06-9ADCC80353A9}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,18 +29,10 @@ Global
 		{255FD6E7-0235-41FD-8AA6-8CB8473D9A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{255FD6E7-0235-41FD-8AA6-8CB8473D9A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{255FD6E7-0235-41FD-8AA6-8CB8473D9A46}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A03C0516-A9D7-4A80-BFC0-56F24D5E6F9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A03C0516-A9D7-4A80-BFC0-56F24D5E6F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A03C0516-A9D7-4A80-BFC0-56F24D5E6F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A03C0516-A9D7-4A80-BFC0-56F24D5E6F9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{429775E8-2CE3-464D-BD68-EDF8257746CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{429775E8-2CE3-464D-BD68-EDF8257746CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{429775E8-2CE3-464D-BD68-EDF8257746CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{429775E8-2CE3-464D-BD68-EDF8257746CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F379571-A64D-49AC-9C06-9ADCC80353A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F379571-A64D-49AC-9C06-9ADCC80353A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F379571-A64D-49AC-9C06-9ADCC80353A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F379571-A64D-49AC-9C06-9ADCC80353A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

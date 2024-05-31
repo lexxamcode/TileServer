@@ -1,0 +1,37 @@
+version: '3.4'
+
+networks:
+  tile-server-network:
+    driver: bridge
+
+services:
+  elasticsearch:
+    image: elasticsearch:8.13.4
+    container_name: elasticsearch
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: false
+      ELASTIC_PASSWORD: 1234
+    volumes:
+      - elasticsearch_volume:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - tile-server-network
+
+  kibana:
+    container_name: kibana
+    image: kibana:8.13.4
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      elasticsearch.ssl.verificationMode: none
+    networks:
+      - tile-server-network
+
+
+volumes:
+  elasticsearch_volume:

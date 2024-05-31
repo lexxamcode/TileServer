@@ -25,4 +25,14 @@ public class TilesController(ITileRepository tileRepository) : ControllerBase
     {
         return _tileRepository.GetTile(z, x, y);
     }
+
+    /// <summary>
+    /// Метод получения заблокированного тайла
+    /// </summary>
+    /// <returns>Изображение тайла</returns>
+    [HttpGet("broken_tile")]
+    public ActionResult GetBrokenTile()
+    {
+        return _tileRepository.GetTile("-1", "-1", "-1");
+    }
 }

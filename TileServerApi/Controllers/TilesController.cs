@@ -23,7 +23,14 @@ public class TilesController(ITileRepository tileRepository) : ControllerBase
     [HttpGet("{z}/{x}/{y}")]
     public ActionResult GetTile(string z, string x, string y)
     {
-        return _tileRepository.GetTile(z, x, y);
+        try
+        {
+            return _tileRepository.GetTile(z, x, y);
+        }
+        catch (Exception)
+        {
+            return _tileRepository.GetTile("-1", "-1", "-1");
+        }
     }
 
     /// <summary>

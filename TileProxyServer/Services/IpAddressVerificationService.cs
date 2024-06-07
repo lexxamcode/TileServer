@@ -19,23 +19,30 @@ public class IpAddressVerificationService(ElasticsearchClient elasticsearchClien
     public async Task<bool> IsPotencialIntruderAsync(Request request)
     {
         var queryResponse = await _elasticsearchClient.SearchAsync<Request>(s => s
-                                                            .Index("tile-server-index")
-                                                            .From(0)
-                                                            .Size(200)
-                                                            .Query(q => q
-                                                                         .Match(m => m
-                                                                            .Field(f => f.ClientIp)
-                                                                            .Query(request.ClientIp)
-                                                                         )
-                                                                    ));
+                                                                                .Index("tile-server-index")
+                                                                                .From(0)
+                                                                                .Size(10000)
+                                                                                .Sort(sr => sr.Field(f => f.RequestTime))
+                                                                                .Query(q => q
+                                                                                            .Match(m => m
+                                                                                            .Field(f => f.ClientIp)
+                                                                                            .Query(request.ClientIp))));
 
         if (queryResponse.Documents.Count < 100)
             return false;
 
-        var documentsSortedByCoordinates = queryResponse.Documents.OrderBy(request => request.Z).ThenBy(request => request.X).ThenBy(request => request.Y);
-        var documentsSortedByTime = queryResponse.Documents.OrderBy(request => request.RequestTime).ToList();
+        var lastRequests = queryResponse.Documents.TakeLast(20).OrderByDescending(request => request.RequestTime);
+        var documentsSortedByCoordinates = lastRequests.OrderBy(request => request.Z).ThenBy(request => request.X).ThenBy(request => request.Y);
+        var documentsSortedByTime = lastRequests.OrderBy(request => request.RequestTime).ToList();
 
-        var areDocumentSequencesEqual = documentsSortedByCoordinates.SequenceEqual(documentsSortedByTime);
+        foreach (var document in documentsSortedByCoordinates)
+        {
+            Console.Write($"{document.Z}-{document.X}-{document.Y} ");
+        }
+        Console.WriteLine();
+
+        var areDocumentSequencesEqual = documentsSortedByTime.SequenceEqual(documentsSortedByCoordinates) ||
+                                        documentsSortedByTime.SequenceEqual(documentsSortedByCoordinates.Reverse());
 
         return areDocumentSequencesEqual;
     }

@@ -19,4 +19,9 @@ public class ProxyConfiguration
     /// Индекс ElasticSearch
     /// </summary>
     public string ElasticSearchIndex { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Строка подключения к Sqlite
+    /// </summary>
+    public string SqliteConnectionString { get; set; } = string.Empty;
 }

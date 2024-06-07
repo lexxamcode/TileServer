@@ -8,10 +8,12 @@ namespace TileProxyServer.Controllers;
 [Route("tiles/{z}/{x}/{y}")]
 public class TileProxyController(IOptionsSnapshot<ProxyConfiguration> proxyConfiguration,
                                  ILogger<TileProxyController> logger,
-                                 IIpAddressVerificationService ipAddressVerificationService) : ControllerBase
+                                 IIpAddressVerificationService ipAddressVerificationService,
+                                 IBlacklistDatabaseService blacklistDatabaseService) : ControllerBase
 {
     private readonly ProxyConfiguration _proxyConfiguration = proxyConfiguration.Value;
     private readonly IIpAddressVerificationService _ipAddressVerificationService = ipAddressVerificationService;
+    private readonly IBlacklistDatabaseService _blacklistDatabaseService = blacklistDatabaseService;
     private readonly ILogger _logger = logger;
 
     [HttpGet]
@@ -19,6 +21,10 @@ public class TileProxyController(IOptionsSnapshot<ProxyConfiguration> proxyConfi
     {
         var clientIp = HttpContext.Connection.RemoteIpAddress?.ToString() ?? string.Empty;
         _logger.LogInformation("GetTile z={z} x={x} y={y} - {clientIp}", z, x, y, clientIp);
+
+        var isBlocked = _blacklistDatabaseService.IsBlocked(clientIp);
+        if (isBlocked)
+            return StatusCode(StatusCodes.Status403Forbidden);
 
         var currentRequest = new Request()
         {
@@ -37,7 +43,8 @@ public class TileProxyController(IOptionsSnapshot<ProxyConfiguration> proxyConfi
         if (isPotentialIntruder)
         {
             _logger.LogInformation("Potential Intruder Detected!");
-            tileUrl = tileUrl.Replace("{z}/{x}/{y}", "broken_tile");
+            _blacklistDatabaseService.BlockIpAddress(currentRequest.ClientIp);
+            return StatusCode(StatusCodes.Status403Forbidden);
         }
         else
         {

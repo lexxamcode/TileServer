@@ -13,7 +13,6 @@ def basicBulkDownload():
         for y in range (0, 2**maxZoom - 1):
             img = urllib.request.urlopen("{tileServerUrl}/{z}/{x}/{y}".format(tileServerUrl=tileServerUrl, z=maxZoom, x=x, y=y), context=context)
             print(maxZoom, x, y)
-            input()
             try:
                 os.makedirs('./{downloadFolder}/{z}/{x}'.format(downloadFolder=downloadFolder, z=maxZoom, x=x)) 
             except:
@@ -27,7 +26,6 @@ def basicBulkDownloadReverse():
     for x in range (2**maxZoom - 1, 0, -1):
         for y in range (2**maxZoom - 1, 0, -1):
             print(maxZoom, x, y)
-            input()
             img = urllib.request.urlopen("{tileServerUrl}/{z}/{x}/{y}".format(tileServerUrl=tileServerUrl, z=maxZoom, x=x, y=y), context=context)
             try:
                 os.makedirs('./{downloadFolder}/{z}/{x}'.format(downloadFolder=downloadFolder, z=maxZoom, x=x)) 

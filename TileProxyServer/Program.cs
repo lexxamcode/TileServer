@@ -25,7 +25,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<ProxyConfiguration>(builder.Configuration.GetSection("ProxyConfiguration"));
-
 var elasticSettings = new ElasticsearchClientSettings().DefaultIndex("tile-server-index");
 var elasticSearchClient = new ElasticsearchClient(elasticSettings);
 
@@ -35,6 +34,11 @@ await elasticSearchClient.DeleteByQueryAsync<Request>(
 
 builder.Services.AddSingleton(elasticSearchClient);
 builder.Services.AddSingleton<IIpAddressVerificationService, IpAddressVerificationService>();
+
+
+var sqliteConnectionString = builder.Configuration.GetSection("ProxyConfiguration:SqliteConnectionString").Value ?? string.Empty;
+builder.Services.AddSingleton<IBlacklistDatabaseService>(_ => new BlacklistDatabaseService(sqliteConnectionString));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,15 +1,17 @@
-﻿using Domain.Model;
+﻿using Gdd.Domain.Services;
+using Gdd.Repository.Utils;
 using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Options;
 
 namespace TileProxyServer.Services;
 
-public class BlacklistDatabaseService(string connectionString) : IBlacklistDatabaseService
+public class BlacklistRepository(IOptionsMonitor<SqliteConfiguration> configuration) : IBlacklistRepository
 {
-    private readonly string _connectionString = connectionString;
+    private readonly SqliteConfiguration _configuration = configuration.CurrentValue;
 
     private void EnsureTableCreated()
     {
-        using var connection = new SqliteConnection(_connectionString);
+        using var connection = new SqliteConnection(_configuration.ConnectionString);
         connection.Open();
 
         var checkCommand = new SqliteCommand
@@ -32,11 +34,11 @@ public class BlacklistDatabaseService(string connectionString) : IBlacklistDatab
     }
 
 
-    public void BlockIpAddress(string ipAddress)
+    public async Task AddIp(string ipAddress)
     {
         EnsureTableCreated();
 
-        using var connection = new SqliteConnection(_connectionString);
+        using var connection = new SqliteConnection(_configuration.ConnectionString);
         connection.Open();
 
         var blockExpression = "INSERT INTO Blacklist (IpAddress) VALUES (@ipAddress)";
@@ -48,17 +50,17 @@ public class BlacklistDatabaseService(string connectionString) : IBlacklistDatab
         };
         blockCommand.Parameters.Add(ipAddressParameter);
 
-        var rowsAffected = blockCommand.ExecuteNonQuery();
+        var rowsAffected = await blockCommand.ExecuteNonQueryAsync();
 
         if (rowsAffected == 0)
             throw new SqliteException("Ip addres has not been added", 1);
     }
 
-    public bool IsBlocked(string ipAddress)
+    public async Task<bool> IsInDatabase(string ipAddress)
     {
         EnsureTableCreated();
 
-        using var connection = new SqliteConnection(_connectionString);
+        using var connection = new SqliteConnection(_configuration.ConnectionString);
         connection.Open();
 
         var selectExpression = "SELECT * FROM Blacklist WHERE IpAddress = @ipAddress";
@@ -70,7 +72,7 @@ public class BlacklistDatabaseService(string connectionString) : IBlacklistDatab
         };
         checkCommand.Parameters.Add(ipAddressParameter);
 
-        var reader = checkCommand.ExecuteReader();
+        var reader = await checkCommand.ExecuteReaderAsync();
         return reader.HasRows;
     }
 }

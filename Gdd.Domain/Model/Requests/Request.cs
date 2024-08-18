@@ -1,4 +1,4 @@
-﻿namespace Domain.Model;
+﻿namespace Gdd.Domain.Model.Requests;
 
 /// <summary>
 /// Класс запроса
@@ -16,17 +16,7 @@ public class Request
     public DateTime RequestTime { get; set; }
 
     /// <summary>
-    /// Z координата тайла
+    /// Координаты запрашиваемого тайла
     /// </summary>
-    public int Z { get; set; }
-
-    /// <summary>
-    /// X координата тайла
-    /// </summary>
-    public int X { get; set; }
-
-    /// <summary>
-    /// Y координата тайла
-    /// </summary>
-    public int Y { get; set; }
+    public TileCoordinates Coordinates { get; set; }
 }

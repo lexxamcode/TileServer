@@ -1,20 +1,20 @@
-﻿namespace Domain.Model;
+﻿namespace Gdd.Domain.Services;
 
 /// <summary>
-/// Интерфейс для взаимодействия с базой данных заблокированных IP-адресов
+/// Интерфейс для работы с заблокированными IP-адресами
 /// </summary>
-public interface IBlacklistDatabaseService
+public interface IBlacklistManager
 {
     /// <summary>
     /// Заблокировать IP-адрес
     /// </summary>
     /// <param name="ipAddress">IP-адрес</param>
-    public void BlockIpAddress(string ipAddress);
+    public Task BlockIpAddressAsync(string ipAddress);
 
     /// <summary>
     /// Проверить, заблокирован ли IP-адрес
     /// </summary>
     /// <param name="ipAddress">IP-адрес</param>
     /// <returns>Заблокирован адрес или нет</returns>
-    public bool IsBlocked(string ipAddress);
+    public Task<bool> IsBlockedAsync(string ipAddress);
 }

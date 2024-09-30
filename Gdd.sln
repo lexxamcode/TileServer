@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TileServerApi", "TestTileServer\TileServerApi\TileServerApi.csproj", "{CBC48C38-C620-4D55-B60B-3E10A09988D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdd.HttpApi", "GeoDownloadDefence\Gdd.HttpApi\Gdd.HttpApi.csproj", "{52222E85-A5CC-443C-97A2-26CF3D92A0EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdd.Domain", "GeoDownloadDefence\Gdd.Domain\Gdd.Domain.csproj", "{255FD6E7-0235-41FD-8AA6-8CB8473D9A46}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdd.Application.Contracts", "GeoDownloadDefence\Gdd.Application.Contracts\Gdd.Application.Contracts.csproj", "{7B038C57-5C8A-4615-BF3E-591A5ECE103F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdd.Application", "GeoDownloadDefence\Gdd.Application\Gdd.Application.csproj", "{BA7AADF2-FD87-4F0A-94F0-90CE07FB2698}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdd.Repository", "GeoDownloadDefence\Gdd.Repository\Gdd.Repository.csproj", "{8AA2E57A-203B-41FA-A6BE-91C9B7699D5C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gdd.Domain.Shared", "GeoDownloadDefence\Gdd.Domain.Shared\Gdd.Domain.Shared.csproj", "{11659FCB-3278-4650-B444-8AA38765FBA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBC48C38-C620-4D55-B60B-3E10A09988D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBC48C38-C620-4D55-B60B-3E10A09988D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBC48C38-C620-4D55-B60B-3E10A09988D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBC48C38-C620-4D55-B60B-3E10A09988D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52222E85-A5CC-443C-97A2-26CF3D92A0EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52222E85-A5CC-443C-97A2-26CF3D92A0EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52222E85-A5CC-443C-97A2-26CF3D92A0EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52222E85-A5CC-443C-97A2-26CF3D92A0EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255FD6E7-0235-41FD-8AA6-8CB8473D9A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255FD6E7-0235-41FD-8AA6-8CB8473D9A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255FD6E7-0235-41FD-8AA6-8CB8473D9A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255FD6E7-0235-41FD-8AA6-8CB8473D9A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C34C33CD-EEFE-4DCA-AEF5-2B96538DB82D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B038C57-5C8A-4615-BF3E-591A5ECE103F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B038C57-5C8A-4615-BF3E-591A5ECE103F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B038C57-5C8A-4615-BF3E-591A5ECE103F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B038C57-5C8A-4615-BF3E-591A5ECE103F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7AADF2-FD87-4F0A-94F0-90CE07FB2698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7AADF2-FD87-4F0A-94F0-90CE07FB2698}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7AADF2-FD87-4F0A-94F0-90CE07FB2698}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7AADF2-FD87-4F0A-94F0-90CE07FB2698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA2E57A-203B-41FA-A6BE-91C9B7699D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA2E57A-203B-41FA-A6BE-91C9B7699D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA2E57A-203B-41FA-A6BE-91C9B7699D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA2E57A-203B-41FA-A6BE-91C9B7699D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11659FCB-3278-4650-B444-8AA38765FBA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11659FCB-3278-4650-B444-8AA38765FBA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11659FCB-3278-4650-B444-8AA38765FBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11659FCB-3278-4650-B444-8AA38765FBA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5398125-1081-4943-8822-C32B2DA16535}
+	EndGlobalSection
+EndGlobal

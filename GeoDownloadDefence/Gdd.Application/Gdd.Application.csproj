@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Serilog.Enrichers.ClientInfo" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Gdd.Application.Contracts\Gdd.Application.Contracts.csproj" />
     <ProjectReference Include="..\Gdd.Domain.Shared\Gdd.Domain.Shared.csproj" />
     <ProjectReference Include="..\Gdd.Domain\Gdd.Domain.csproj" />

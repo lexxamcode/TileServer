@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.13.15" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.8" />
+    <PackageReference Include="Serilog.Enrichers.ClientInfo" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -31,6 +31,36 @@ services:
       elasticsearch.ssl.verificationMode: none
     networks:
       - tile-server-network
+  
+  gdd-proxy-server:
+    container_name: gdd-proxy-server
+    ports:
+     - 8080:8080
+     - 8081:8081
+    build:
+      context: .
+      dockerfile: GeoDownloadDefence/Gdd.HttpApi/Dockerfile
+    environment:
+      - "TileServer:Url=http://gdd-tile-server:8082"
+      - "ElasticSearch:Url=http://elasticsearch:9200"
+      - "ElasticSearch:Index=tile-server-index"
+      - "Sqlite:ConnectionString=DataSource=/data/gdd/gdd-sqlite.db"
+    command: -c /bin/bash -p 'mkdir /data && mkdir /data/gdd'
+    networks:
+      - tile-server-network
+
+  gdd-tile-server:
+    container_name: gdd-tile-server
+    ports:
+      - 8082:8080
+      - 8083:8081
+    build:
+      context: .
+      dockerfile: ./TestTileServer/TileServerApi/Dockerfile
+    environment:
+      - "Tiles:LocalStoragePath=/data/gdd/tiles"
+    volumes:
+      - ./TestTileServer/Data:/data/gdd/tiles
 
 
 volumes:

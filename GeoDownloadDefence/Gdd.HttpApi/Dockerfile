@@ -9,17 +9,22 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["TileProxyServer/TileProxyServer.csproj", "TileProxyServer/"]
-RUN dotnet restore "./TileProxyServer/./TileProxyServer.csproj"
+COPY ["GeoDownloadDefence/Gdd.HttpApi/Gdd.HttpApi.csproj", "GeoDownloadDefence/Gdd.HttpApi/"]
+COPY ["GeoDownloadDefence/Gdd.Application.Contracts/Gdd.Application.Contracts.csproj", "GeoDownloadDefence/Gdd.Application.Contracts/"]
+COPY ["GeoDownloadDefence/Gdd.Domain.Shared/Gdd.Domain.Shared.csproj", "GeoDownloadDefence/Gdd.Domain.Shared/"]
+COPY ["GeoDownloadDefence/Gdd.Domain/Gdd.Domain.csproj", "GeoDownloadDefence/Gdd.Domain/"]
+COPY ["GeoDownloadDefence/Gdd.Application/Gdd.Application.csproj", "GeoDownloadDefence/Gdd.Application/"]
+COPY ["GeoDownloadDefence/Gdd.Repository/Gdd.Repository.csproj", "GeoDownloadDefence/Gdd.Repository/"]
+RUN dotnet restore "./GeoDownloadDefence/Gdd.HttpApi/Gdd.HttpApi.csproj"
 COPY . .
-WORKDIR "/src/TileProxyServer"
-RUN dotnet build "./TileProxyServer.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/GeoDownloadDefence/Gdd.HttpApi"
+RUN dotnet build "./Gdd.HttpApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./TileProxyServer.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Gdd.HttpApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "TileProxyServer.dll"]
+ENTRYPOINT ["dotnet", "Gdd.HttpApi.dll"]

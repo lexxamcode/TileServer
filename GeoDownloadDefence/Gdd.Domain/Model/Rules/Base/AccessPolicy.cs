@@ -1,4 +1,4 @@
-﻿namespace Gdd.Domain.Model.Rules;
+﻿namespace Gdd.Domain.Model.Rules.Base;
 
 public enum AccessPolicy
 {

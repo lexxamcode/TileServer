@@ -1,6 +1,6 @@
 ﻿using Gdd.Domain.Model.Requests;
 
-namespace Gdd.Domain.Model.Rules;
+namespace Gdd.Domain.Model.Rules.Base;
 
 /// <summary>
 /// Базовый абстрактный класс для правила

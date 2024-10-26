@@ -6,6 +6,11 @@
 public class Request
 {
     /// <summary>
+    /// Метод запроса
+    /// </summary>
+    public HttpMethod? Method { get; set; }
+
+    /// <summary>
     /// IP-адрес клиента, отправившего запрос
     /// </summary>
     public string ClientIp { get; set; } = string.Empty;
